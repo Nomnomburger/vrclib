@@ -18,12 +18,12 @@ extern pros::Motor right_mid;
 
 extern pros::Motor lift;
 extern pros::Motor indexer;
-extern pros::ADIDigitalOut front_goal_grappler;
-extern pros::ADIDigitalOut back_goal_grappler;
+extern pros::Motor intake;
 
-extern pros::Imu imu_sensor;
+extern pros::ADIDigitalOut piston_1;
+extern pros::ADIDigitalOut piston_2;
 
-extern pros::ADIUltrasonic sonar;
+extern pros::Imu inertial;
 
 
 

@@ -37,7 +37,7 @@ double gyro_value()
 	//pros::delay(199);
 	double getHeadingVal;
 	//pros::delay(135);3
-	getHeadingVal=imu_sensor.get_heading();
+	getHeadingVal=inertial.get_heading();
 	pros::delay(20);
 	if (getHeadingVal > 180)
 	{
@@ -56,7 +56,7 @@ double PID(vector* pCenter, double* pLastError)
 		unsigned int elapsedTime;
 		static unsigned int previousTime = pros::millis();
 		elapsedTime = 80;
-		double turn = imu_sensor.get_heading();
+		double turn = inertial.get_heading();
 		if (turn > 180)
 		{
 			turn = turn - 360;
@@ -191,7 +191,7 @@ void turn_forwards(int degrees, double radius, vector* pCenter) //(int velocityL
 {
 	//double degres;
 	//degres = degrees + pCenter->rotation;
-	//imu_sensor.reset();
+	//inertial.reset();
 	//distanceTravled = 0;
 	//begin = rotation();
 
@@ -265,7 +265,7 @@ void turn_forwards(int degrees, double radius, vector* pCenter) //(int velocityL
 	move(MOTOR_BRAKE_HOLD,MOTOR_BRAKE_HOLD);
 	pros::delay(100);
 	pCenter -> Turning = false;
-	pCenter -> rotation = imu_sensor.get_heading();
+	pCenter -> rotation = inertial.get_heading();
 	pros::delay(20);
 
 	//return center;
@@ -275,7 +275,7 @@ void turn_backwards(int degrees, double radius, vector* pCenter) //(int velocity
 {
 	//double degres;
 	//degres = degrees + pCenter->rotation;
-	//imu_sensor.reset();
+	//inertial.reset();
 	//distanceTravled = 0;
 	//begin = rotation();
 
@@ -349,7 +349,7 @@ void turn_backwards(int degrees, double radius, vector* pCenter) //(int velocity
 	move(MOTOR_BRAKE_HOLD,MOTOR_BRAKE_HOLD);
 	pros::delay(100);
 	pCenter -> Turning = false;
-	pCenter -> rotation = imu_sensor.get_heading();
+	pCenter -> rotation = inertial.get_heading();
 	pros::delay(20);
 
 	//return center;

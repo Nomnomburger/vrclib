@@ -11,7 +11,7 @@
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-	imu_sensor.reset();
+	inertial.reset();
 }
 
 /**
@@ -31,7 +31,7 @@ void disabled() {}
  * starts.
  */
 void competition_initialize() {
-	imu_sensor.reset();
+	inertial.reset();
 }
 
 /**
