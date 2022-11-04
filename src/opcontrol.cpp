@@ -2,6 +2,7 @@
 #include "globals/globals.hpp"
 #include "lib/autoncontrol.hpp"
 #include "lib/robotcontrol.hpp"
+#include "pros/misc.h"
 
 bool slow = false;
 
@@ -52,6 +53,9 @@ void opcontrol() {
 	// Main drive loop
 	while (true) {
 
+    ///*CHASSIS MOVEMENT*///
+
+    /* Chassis Movement for X-Drive or Mecanum Drive */ //(Comment out if using methods below)
 		y = map(master.get_analog(ANALOG_LEFT_Y));
 		x = map(master.get_analog(ANALOG_LEFT_X));
 		r = map(master.get_analog(ANALOG_RIGHT_X));
@@ -60,7 +64,34 @@ void opcontrol() {
 		int bLeft = capMotorPower(y - x + r);
 		int bRight = capMotorPower(y + x - r);
 
+    /* Chassis Movement for 4 Wheel Inline Drive */ //(Uncomment this section if you are using a 4 wheel inline drive)
+    /*
+    y = map(master.get_analog(ANALOG_LEFT_Y));
+    r = map(master.get_analog(ANALOG_RIGHT_X));
+    int fLeft = capMotorPower(y + r);
+		int fRight = capMotorPower(y - r);
+		int bLeft = capMotorPower(y + r);
+		int bRight = capMotorPower(y - r);
+    */
 
+    /* Chassis Movement for 6 Wheel Inline Drive */ //(Uncomment this section if you are using a 6 wheel inline drive)
+    /*
+    y = map(master.get_analog(ANALOG_LEFT_Y));
+    r = map(master.get_analog(ANALOG_RIGHT_X));
+    int fLeft = capMotorPower(y + r);
+		int fRight = capMotorPower(y - r);
+		int bLeft = capMotorPower(y + r);
+		int bRight = capMotorPower(y - r);
+    //Uncomment the last two lines in the Drive Motor Pairing section to use 6 wheel inline
+    int mLeft = capMotorPower(y + r);
+    int mRight = capMotorPower(y - r);
+    */
+
+
+
+    ///*SUBSYSTEM CONTROL*///
+
+    //Intake Control
 		if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
 	 	  runIntake(127); //intake
 		}
@@ -72,26 +103,53 @@ void opcontrol() {
 
 		}
 
-		if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
-			index(127); //running the indexer will run both indexers
-			//isIndexRun = true;
+    //Lift Control
+    if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
+			lift = 127; //lift
 		}
 		else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
+			lift = -127;
+		}
+		else {
+			lift = 0;
+		}
+
+    //Indexer Control
+		if(master.get_digital(pros::E_CONTROLLER_DIGITAL_A)) {
+			index(127); //running the indexer will run both indexers
+		}
+		else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {
 			index(-127);
-			//isIndexRun = true;
 		}
 		else {
 			index(0);
 		}
 
+    //Pneumatics Control
+    if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_UP)) {
+		{
+			 piston_1.set_value(1);
+		}
+		if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)) {
+      piston_1.set_value(0);
+    }
+
+
+
+    ///*DRIVE MOTOR PAIRING*///
+
 		left_front = fLeft;
 		right_front = fRight;
 		left_back = bLeft;
 		right_back = bRight;
+    /* //Uncomment this section if you are using a 6 wheel inline drive
+    left_mid = mLeft;
+    right_mid = mRight;
+    */
+    
 
 
 		// Delay to avoid overloading the code
-
 		pros::delay(20);
 	}
 }

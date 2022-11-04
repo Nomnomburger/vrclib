@@ -2,13 +2,35 @@
 #include "../globals/globals.hpp"
 #include "autoncontrol.hpp"
 
-//house cleaning functions
-int currentTime()
+
+
+/* BASIC FUNCTIONS */
+
+//4 Motor Drivetrain (X-Drive, 4 motor inline)
+//Comment out this section to use the 6 motor drivetrain variant
+void move(double left, double right)
 {
-	//get time here, kinda useless but ok
-	return pros::millis();
+	left_back=left;
+	left_front=left;
+	right_back=right;
+	right_front=right;
 }
-// lol
+
+//6 Motor Drivetrain (6 motor inline)
+//Uncomment section below to use
+/*
+void move(double left, double right)
+{
+	left_back=left;
+	left_mid = left;
+	left_front=left;
+	right_back=right;
+	right_mid=right;
+	right_front=right;
+}
+*/
+
+//TODO: check where this is used
 double rotation()
 {
 	double length;
@@ -18,17 +40,10 @@ double rotation()
 	return (length/2)+(width/2);
 }
 
-
-
-//movement functions basic
-void move(double left, double right)
+int currentTime()
 {
-	left_back=left;
-	left_mid = left;
-	left_front=left;
-	right_back=right;
-	right_mid=right;
-	right_front=right;
+	//get time here, kinda useless but ok
+	return pros::millis();
 }
 
 
@@ -47,6 +62,8 @@ double gyro_value()
 	return getHeadingVal;
 	//<180 ,((-(getHeadingVal-180)) < 0);
 }
+
+
 
 
 double PID(vector* pCenter, double* pLastError)
