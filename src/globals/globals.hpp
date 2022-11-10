@@ -29,7 +29,7 @@ extern pros::Imu inertial;
 
 extern int autonSelection;
 
-enum AutonEnum {S_BLUE5 = -1, B_BLUE3 = -2, S_BLUE7 = -3, S_BLUE8 = -4, B_BLUE6_C = -5, S_RED5 = 1, B_RED3 = 2, S_RED7 = 3, S_RED8 = 4, B_RED6_C = 5, NOTHING = 10, SKILLS = 0};
+enum AutonEnum {BLUE_1 = -1, BLUE_2 = -2, BLUE_3 = -3, BLUE_4 = -4, BLUE_5 = -5, RED_1 = 1, RED_2 = 2, RED_3 = 3, RED_4 = 4, RED_5 = 5, NOTHING = 10, SKILLS = 0};
 
 template<typename T> int sgn(T val) {
     return (T(0) < val) - (val < T(0));
