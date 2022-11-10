@@ -1,6 +1,5 @@
 /* IMPORTS */
 
-//change these includes to match your project
 #include "main.h"
 #include "selection.h"
 #include "globals/globals.hpp"
