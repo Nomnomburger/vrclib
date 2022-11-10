@@ -1,34 +1,37 @@
+/* IMPORTS */
+
 #include "main.h"
 #include "selection.h"
 #include "globals/globals.hpp"
 
-static const char *btnmMap[] = {"Small 5", "Small 7", "Small 8", "\n", "Big 3", "Big 6 C", "\n", "Do Nothing", ""};
+/* Set up button map for both red and blue autonomouses */
+static const char *btnmMap[] = {"Auton 1", "Auton 2", "Auton 3", "\n", "Auton 4", "Auton 5", "\n", "Do Nothing", ""};
 
 
-
+/* Selector code when Red tab is pressed */
 lv_res_t redBtnmAction(lv_obj_t *btnm, const char *txt){
 	printf("red button: %s released\n", txt);
 	lv_theme_t *th = lv_theme_nemo_init(0, NULL);
 	lv_theme_set_current(th);
-	if (strcmp(txt, "LRT") == 0)
+	if (strcmp(txt, "Auton 1") == 0)
 	{
-		autonSelection = S_RED5;
+		autonSelection = RED_1;
 	}
-	if (strcmp(txt, "Small 7") == 0)
+	if (strcmp(txt, "Auton 2") == 0)
 	{
-		autonSelection = S_RED7;
+		autonSelection = RED_2;
 	}
-	if (strcmp(txt, "Small 8") == 0)
+	if (strcmp(txt, "Auton 3") == 0)
 	{
-		autonSelection = S_RED8;
+		autonSelection = RED_3;
 	}
-	if (strcmp(txt, "Big 3") == 0)
+	if (strcmp(txt, "Auton 4") == 0)
 	{
-		autonSelection = B_RED3;
+		autonSelection = RED_4;
 	}
-	if (strcmp(txt, "Big 6 C") == 0)
+	if (strcmp(txt, "Auton 5") == 0)
 	{
-		autonSelection = B_RED6_C;
+		autonSelection = RED_5;
 	}
 	if (strcmp(txt, "Do Nothing") == 0)
 	{
@@ -38,6 +41,8 @@ lv_res_t redBtnmAction(lv_obj_t *btnm, const char *txt){
 	return LV_RES_OK; // return OK because the button matrix is not deleted
 }
 
+
+/* Selector code when Blue tab is pressed */
 lv_res_t blueBtnmAction(lv_obj_t *btnm, const char *txt)
 {
 	printf("blue button: %s released\n", txt);
@@ -45,25 +50,25 @@ lv_res_t blueBtnmAction(lv_obj_t *btnm, const char *txt)
 	lv_theme_t *th = lv_theme_nemo_init(230, NULL);
 	lv_theme_set_current(th);
 
-	if (strcmp(txt, "LRT") == 0)
+	if (strcmp(txt, "Auton 1") == 0)
 	{
-		autonSelection = S_BLUE5;
+		autonSelection = BLUE_1;
 	}
-	if (strcmp(txt, "Small 7") == 0)
+	if (strcmp(txt, "Auton 2") == 0)
 	{
-		autonSelection = S_BLUE7;
+		autonSelection = BLUE_2;
 	}
-	if (strcmp(txt, "Small 8") == 0)
+	if (strcmp(txt, "Auton 3") == 0)
 	{
-		autonSelection = S_BLUE8;
+		autonSelection = BLUE_3;
 	}
-	if (strcmp(txt, "Big 3") == 0)
+	if (strcmp(txt, "Auton 4") == 0)
 	{
-		autonSelection = B_BLUE3;
+		autonSelection = BLUE_4;
 	}
-	if (strcmp(txt, "Big 6 C") == 0)
+	if (strcmp(txt, "Auton 5") == 0)
 	{
-		autonSelection = B_BLUE6_C;
+		autonSelection = BLUE_5;
 	}
 	if (strcmp(txt, "Do Nothing") == 0)
 	{
@@ -73,10 +78,11 @@ lv_res_t blueBtnmAction(lv_obj_t *btnm, const char *txt)
 	return LV_RES_OK;
 }
 
+/* Selector code for when Skills tab is pressed */
 lv_res_t skillsBtnAction(lv_obj_t *btn)
 {
 	// lvgl theme
-	lv_theme_t *th = lv_theme_nemo_init(286, NULL); //make purple because purple good
+	lv_theme_t *th = lv_theme_nemo_init(286, NULL);
 	lv_theme_set_current(th);
 	
 	lv_style_scr.body.main_color = LV_COLOR_BLACK; 
@@ -86,9 +92,11 @@ lv_res_t skillsBtnAction(lv_obj_t *btn)
 	return LV_RES_OK;
 }
 
+
+/* INITIALIZE SELECTOR */
 void selectorInit(){
 	// lvgl theme
-	lv_theme_t *th = lv_theme_nemo_init(286, NULL); //make purple because purple good
+	lv_theme_t *th = lv_theme_nemo_init(286, NULL);
 	lv_theme_set_current(th);
 
 

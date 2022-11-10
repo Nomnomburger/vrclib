@@ -2,6 +2,6 @@
 #include "../lib/autoncontrol.hpp"
 #include "../lib/robotcontrol.hpp"
 
-void autonSkills() {
+void autonOne() {
   //route code here
 }

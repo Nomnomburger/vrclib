@@ -11,7 +11,8 @@
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-	imu_sensor.reset();
+	inertial.reset();
+	selectorInit();
 }
 
 /**
@@ -31,7 +32,8 @@ void disabled() {}
  * starts.
  */
 void competition_initialize() {
-	imu_sensor.reset();
+	inertial.reset();
+	selectorInit();
 }
 
 /**
@@ -49,24 +51,43 @@ void autonomous() {
 
   switch (autonSelection)
 	{
-		case S_RED5:
+		case RED_1:
+			// Auton function here
 			break;
-		case S_BLUE5:
+		case BLUE_1:
+			// Auton function here
 			break;
-		case S_RED7:
-		case S_BLUE7:
+
+		case RED_2:
+      // Auton function here
+			break;
+		case BLUE_2:
+      // Auton function here
+			break;
 			
-		case S_RED8:
-		case S_BLUE8:
+		case RED_3:
+      // Auton function here
+			break;
+		case BLUE_3:
+      // Auton function here
+			break;
 			
-		case B_RED3:
-		case B_BLUE3:
+		case RED_4:
+      // Auton function here
+			break;
+		case BLUE_4:
+      // Auton function here
+			break;
 			
-		case B_RED6_C:
-		case B_BLUE6_C:
+		case RED_5:
+      // Auton function here
+			break;
+		case BLUE_5:
+      // Auton function here
+			break;
 			
 		case SKILLS:
-			
+			// Skills function here
 			break;
 	}
 
