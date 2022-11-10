@@ -127,7 +127,6 @@ void opcontrol() {
 
     //Pneumatics Control
     if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_UP)) {
-		{
 			 piston_1.set_value(1);
 		}
 		if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)) {
