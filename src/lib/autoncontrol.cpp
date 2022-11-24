@@ -14,7 +14,7 @@ double currentHeading = 0;
 /* Default move command to save programmers some time writing movement for all motors.
  - int left:  Left motor power.
  - int right: Right motor power. */
-void move(double left, double right)
+inline void move(double left, double right)
 {
 	left_back=left;
 	left_front=left;
@@ -36,7 +36,7 @@ void move(double left, double right)
 }
 */
 
-float avgEncoder()
+inline float avgEncoder()
 {
     float avg = (left_front.get_position() + left_back.get_position() + right_back.get_position() + right_front.get_position()) / 4;    
     return (avg);
@@ -79,7 +79,7 @@ float PIDController(float error, float kp, float ki, float kd, float deltaTime, 
 /* Implements move steering from EV3, with positive steering value being a right turn. This is the basis for all our autonomous code, as it is an efficient way to tell the robot how to move and to course-correct it when it is out of line.
  - int steering: Steering value, where 0 steering is going straight, 50 steering is a one wheel turn, 100 steering is an 0on-spot turn, and anything in between is a two-wheeled turn.
  - int speed:    Power value. Determines how fast the robot moves.  */
-void moveSteering (float steering, float speed)
+inline void moveSteering (float steering, float speed)
 {
   if (steering < 0) { //left
     move(((50 + steering)/50)*speed, speed);
