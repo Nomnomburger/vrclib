@@ -199,7 +199,7 @@ void turn(double angle, int power, float steering, double decelZone, float decel
 }
 
 
-void reset()
+inline void reset()
 {
     currentHeading = inertial.get_rotation();
 }

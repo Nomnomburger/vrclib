@@ -22,14 +22,14 @@ int joyMap[128] = {
 	127,127,127,127,127,127,127,127
 };
 
-int capMotorPower(int power)
+inline int capMotorPower(int power)
 {
 	int cappedPower = abs(power) > 126 ? 126 : abs(power);
 	cappedPower = sgn(power) * cappedPower;
 	return slow ? cappedPower * 0.7 : cappedPower;
 }
 
-int map(int joy)
+inline int map(int joy)
 {
 	int j = abs(joy) > 126 ? 127: abs(joy);
 	j = sgn(joy) * joyMap[j];
