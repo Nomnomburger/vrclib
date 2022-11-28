@@ -5,7 +5,7 @@ using namespace pros;
 #ifndef ROBOT_CONTROL
 #define ROBOT_CONTROL
 
-extern void runIntake(int power);
-extern void index(int power);
+void runIntake(int power);
+void index(int power);
 
-#endif
+#endif // ROBOT_CONTROL

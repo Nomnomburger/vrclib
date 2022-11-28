@@ -8,9 +8,9 @@ using namespace pros;
 /*
     only put declarations in this file
 */
-extern void autonOne();
-extern void autonTwo();
-extern void autonSkills();
-extern void autonTest();
+void autonOne();
+void autonTwo();
+void autonSkills();
+void autonTest();
 
-#endif
+#endif // ROUTE

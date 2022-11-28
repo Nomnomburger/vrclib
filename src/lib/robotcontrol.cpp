@@ -3,13 +3,13 @@
 #include "robotcontrol.hpp"
 #include "autoncontrol.hpp"
 
-void runIntake(int power)
+inline void runIntake(int power)
 {
   intake = power;
   indexer = power;
 }
 
-void index(int power)
+inline void index(int power)
 {
   indexer = power;
 }

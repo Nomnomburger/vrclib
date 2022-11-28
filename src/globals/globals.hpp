@@ -36,4 +36,4 @@ template<typename T> int sgn(T val) {
 }
 
 
-#endif
+#endif // GLOBALS
