@@ -52,7 +52,7 @@ void autonomous() {
   switch (autonSelection)
 	{
 		case RED_1:
-			// Auton function here
+			autonOne();
 			break;
 		case BLUE_1:
 			// Auton function here

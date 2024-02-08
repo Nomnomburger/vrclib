@@ -3,5 +3,12 @@
 #include "../lib/robotcontrol.hpp"
 
 void autonOne() {
-  //route code here
+
+  a_init();
+
+  //turn(90, 60);
+
+  goStraight(48, 100);
+
+
 }

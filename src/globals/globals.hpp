@@ -19,6 +19,7 @@ extern pros::Motor right_mid;
 extern pros::Motor lift;
 extern pros::Motor indexer;
 extern pros::Motor intake;
+extern pros::Motor shooter;
 
 extern pros::ADIDigitalOut piston_1;
 extern pros::ADIDigitalOut piston_2;

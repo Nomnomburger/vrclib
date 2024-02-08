@@ -6,7 +6,7 @@
 void runIntake(int power)
 {
   intake = power;
-  indexer = power;
+  //indexer = power;
 }
 
 void index(int power)

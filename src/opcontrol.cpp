@@ -42,6 +42,7 @@ void opcontrol() {
 	left_front.set_brake_mode(E_MOTOR_BRAKE_COAST);
 	right_back.set_brake_mode(E_MOTOR_BRAKE_COAST);
 	left_back.set_brake_mode(E_MOTOR_BRAKE_COAST);
+  intake.set_brake_mode(E_MOTOR_BRAKE_COAST);
 
 	bool slow = false;
 
@@ -59,10 +60,12 @@ void opcontrol() {
 		y = map(master.get_analog(ANALOG_LEFT_Y));
 		x = map(master.get_analog(ANALOG_LEFT_X));
 		r = map(master.get_analog(ANALOG_RIGHT_X));
+    /*
 		int fLeft = capMotorPower(y + x + r);
 		int fRight = capMotorPower(y - x - r);
 		int bLeft = capMotorPower(y - x + r);
 		int bRight = capMotorPower(y + x - r);
+    */
 
     /* Chassis Movement for 4 Wheel Inline Drive */ //(Uncomment this section if you are using a 4 wheel inline drive)
     /*
@@ -75,7 +78,7 @@ void opcontrol() {
     */
 
     /* Chassis Movement for 6 Wheel Inline Drive */ //(Uncomment this section if you are using a 6 wheel inline drive)
-    /*
+    
     y = map(master.get_analog(ANALOG_LEFT_Y));
     r = map(master.get_analog(ANALOG_RIGHT_X));
     int fLeft = capMotorPower(y + r);
@@ -85,13 +88,14 @@ void opcontrol() {
     //Uncomment the last two lines in the Drive Motor Pairing section to use 6 wheel inline
     int mLeft = capMotorPower(y + r);
     int mRight = capMotorPower(y - r);
-    */
+    
 
 
 
     ///*SUBSYSTEM CONTROL*///
 
     //Intake Control
+    /*
 		if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
 	 	  runIntake(127); //intake
 		}
@@ -102,29 +106,43 @@ void opcontrol() {
 			runIntake(0);
 
 		}
+    */
+
+    
+		if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
+	 	  shooter = 127;
+		}
+		else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
+			shooter = -127;
+		}
+		else {
+			shooter = 0;
+
+		}
+    
 
     //Lift Control
     if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
 			lift = 127; //lift
 		}
-		else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
+    else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
 			lift = -127;
 		}
-		else {
+    else {
 			lift = 0;
 		}
 
     //Indexer Control
 		if(master.get_digital(pros::E_CONTROLLER_DIGITAL_A)) {
-			index(127); //running the indexer will run both indexers
+			intake = 127; //running the indexer will run both indexers
 		}
 		else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {
-			index(-127);
+			intake = -127;
 		}
-		else {
-			index(0);
-		}
-
+    else {
+      intake = 0; //running the indexer will run both indexers
+    }
+	
     //Pneumatics Control
     if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_UP)) {
 			 piston_1.set_value(1);
@@ -141,10 +159,10 @@ void opcontrol() {
 		right_front = fRight;
 		left_back = bLeft;
 		right_back = bRight;
-    /* //Uncomment this section if you are using a 6 wheel inline drive
+     //Uncomment this section if you are using a 6 wheel inline drive
     left_mid = mLeft;
     right_mid = mRight;
-    */
+    
     
 
 

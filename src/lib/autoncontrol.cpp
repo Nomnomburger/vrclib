@@ -1,9 +1,10 @@
 #include "../include/main.h"
 #include "../globals/globals.hpp"
 #include "autoncontrol.hpp"
+#include <algorithm>
 
 /* VARIABLES */
-float circumference = 4 * 3.14; // 4 inch diameter wheels
+float circumference = (3.45 * 3.14) * 5/3; // 4 inch diameter wheels
 double currentHeading = 0; 
 
 /* BASIC FUNCTIONS */
@@ -14,17 +15,17 @@ double currentHeading = 0;
 /* Default move command to save programmers some time writing movement for all motors.
  - int left:  Left motor power.
  - int right: Right motor power. */
-void move(double left, double right)
+/*void move(double left, double right)
 {
 	left_back=left;
 	left_front=left;
 	right_back=right;
 	right_front=right;
-}
+*/
 
 //6 Motor Drivetrain (6 motor inline)
 //Uncomment section below to use
-/*
+
 void move(double left, double right)
 {
 	left_back=left;
@@ -34,7 +35,7 @@ void move(double left, double right)
 	right_mid=right;
 	right_front=right;
 }
-*/
+
 
 float avgEncoder()
 {
@@ -69,8 +70,9 @@ float PIDController(float error, float kp, float ki, float kd, float deltaTime, 
       if (output < minOutput) output = minOutput;
       if (output > maxOutput) output = maxOutput;
   }
-  else
-  integral = tmpIntegral;
+  else {
+      integral = tmpIntegral;
+  }
 
   //writeDebugStreamLine("Error: %f, Integral %f, Derivative: %f, Input: %f, Output: %f", error, integral, derivative, input, output);
     return output;
@@ -216,6 +218,8 @@ void a_init()
 	indexer.set_encoder_units(E_MOTOR_ENCODER_DEGREES);
 
   left_back.set_brake_mode(E_MOTOR_BRAKE_BRAKE); // set drive to brake
+  left_mid.set_brake_mode(E_MOTOR_BRAKE_BRAKE);
+  right_mid.set_brake_mode(E_MOTOR_BRAKE_BRAKE);
   left_front.set_brake_mode(E_MOTOR_BRAKE_BRAKE);
   right_back.set_brake_mode(E_MOTOR_BRAKE_BRAKE);
   right_front.set_brake_mode(E_MOTOR_BRAKE_BRAKE);
